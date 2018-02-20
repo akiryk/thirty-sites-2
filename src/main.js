@@ -1,56 +1,6 @@
 "use strict";
-function BlotterAnimations() {
-  this.message = 'Why, Hello!';
-  this.init();
-}
 
-BlotterAnimations.prototype.init = function() {
-  this.message = this.message === 'Why, Hello!' ? 'Okay, Goodbye' : 'Why, Hello!';
-  this.text = new Blotter.Text(this.message, {
-    family : "'Open Sans', sans-serif",
-    size : 220,
-    fill : "#171717",
-    paddingLeft : 40,
-    paddingRight : 40
-  });
-  this.initMaterials();
-}
-
-BlotterAnimations.prototype.initMaterials = function() {
-  var material = new Blotter.ChannelSplitMaterial();
-
-  material.uniforms.uOffset.value = 0.08;
-  material.uniforms.uRotation.value = 40;
-  material.uniforms.uAnimateNoise.value = 1.30;
-
-  var text = this.text;
-
-  var blotter = new Blotter(material, {
-    texts : text
-  });
-
-  var elem = document.getElementById("menu");
-  var scope = blotter.forText(text);
-  elem.innerHTML = '';
-  scope.appendTo(elem);
-
-  const center = window.innerHeight/2;
-  document.addEventListener('mousemove', function(e) {
-    const x = (e.clientX / window.innerWidth) * 180;
-    const y = Math.abs(center - e.clientY) / center;
-    material.uniforms.uRotation.value = x;
-    material.uniforms.uOffset.value = y * .2;
-  })
-}
-
-function Transitions(blotter) {
-  this.blotter = null;
-
-  if (blotter) {
-    this.blotter = blotter;
-  }
-
-
+function Transitions() {
   this.morph1 = {
     start: "M0,0 C46,0 112,0 195,0 C327,0 401,0 505,0 C605,0 638,0 728,0 C818,0 844,0 900.3125,0 C960,0 1001,0 1077,0 C1138,0 1178,0 1200,0 L1200,0 L0,0 L0,0 Z",
     middle: 'M0,16 C47,445 112,659 195,659 C327,659 238,135 505,135 C698,135 596,515 728,515 C859,515 780,221 900,221 C1011,221 925,801 1077,801 C1182,801 1223,541 1200,21 L1200,0 L0,0 L0,16 Z',
@@ -66,7 +16,6 @@ function Transitions(blotter) {
 }
 
 Transitions.prototype.animate = function() {
-
   const part1 = document.querySelector('.st0');
   const part2 = document.querySelector('.st1');
   const dur = 1000;
@@ -76,8 +25,6 @@ Transitions.prototype.animate = function() {
   const morph1 = this.morph1;
   const morph2 = this.morph2;
   const displayMenu = this.displayMenu;
-
-  const blotter = this.blotter;
 
   const bgColors = ['#390694', '#71005e', '#072b3c', '#196700', '#670a00', '#020067', '#000', '#da4800']
   let i = Math.floor(Math.random() * bgColors.length);
@@ -111,7 +58,6 @@ Transitions.prototype.animate = function() {
       value: 0.0,
     },
     complete: function() {
-      blotter && blotter.init();
       displayMenu();
     },
   });
@@ -155,7 +101,6 @@ Transitions.prototype.displayMenu = function() {
   menu.style.display = 'flex';
 }
 
-// var b = new BlotterAnimations();
-var t = new Transitions(null);
+var t = new Transitions();
 var btn = document.getElementById('start');
 btn.addEventListener('click', t.animate.bind(t));
