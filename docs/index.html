@@ -1,0 +1,29 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Morphing Transitions</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.2.0/anime.min.js"></script>
+    <script src="blotter.js"></script>
+    <script src="channelSplitter.js"></script>
+  </head>
+  <body>
+    <div id="menu" class="menu">
+    </div>
+    <div class="transition">
+      <div id="morph1">
+        <svg class="shape" id="at_bottom" width="100%" height="100vh" viewBox="0 0 1200 920" preserveAspectRatio="none">
+          <path class="st0" d="M0,0 C46,0 112,0 195,0 C327,0 401,0 505,0 C605,0 638,0 728,0 C818,0 844,0 900.3125,0 C960,0 1001,0 1077,0 C1138,0 1178,0 1200,0 L1200,0 L0,0 L0,0 Z"/>
+        </svg>
+      </div>
+      <div id="morph2">
+        <svg class="shape" id="part2" width="100%", height="100vh" viewBox="0 0 1200 920" preserveAspectRatio="none">
+          <path class="st1" d="M0,0 C42,0 96,0 163,0 C255,0 290,0 379,0 C464,0 542,0 655,0 C761,0 800,0 869,0 C935,0 955,0 1040,0 C1096,0 1149,0 1200,0 L1200,920 L0,920 L0,0 Z"></path>
+        </svg>
+      </div>
+    </div>
+    <button id="start">Menu</button>
+    <script src="main.js"></script>
+  </body>
+</html>
